@@ -16,9 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.send('Home Page');
 });
-
+// SERVER STATUS ROUTE
+app.get('/api/status', (req, res) => {
+  res.send('Server is running!');
+});
 // NEWSLETTER SIGN UP ROUTE
-app.post('/newsletter', (req, res) => {
+app.post('/api/newsletter', (req, res) => {
   // console.log(req.body);
   const { firstName, lastName, email } = req.body;
   console.log(firstName + ' ' + lastName);
@@ -61,7 +64,7 @@ app.post('/newsletter', (req, res) => {
     body: postData,
   };
 
-  // MAILCHIMP REQUEST
+  // REQUEST CALLS
   request(options, (err, response, body) => {
     console.log(response.statusCode);
     console.log(response.statusMessage);
@@ -85,4 +88,4 @@ app.post('/newsletter', (req, res) => {
 const port = process.env.PORT || 5000;
 
 // START SERVER ON ASSIGNED PORT
-app.listen(port, console.log(`Server started on port: ${PORT}...`));
+app.listen(port, console.log(`Server started on port: ${port}...`));
