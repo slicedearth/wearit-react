@@ -1,9 +1,20 @@
 // IMPORTS
 const express = require('express');
 const nodemailer = require('nodemailer');
+const request = require('request');
+const Nexmo = require('nexmo');
 
 // LOAD ROUTER
 const router = express.Router();
+
+// NEXMO CONNECTION
+const nexmo = new Nexmo(
+  {
+    apiKey: process.env.NEXMO_API_KEY,
+    apiSecret: process.env.NEXMO_API_SECRET,
+  },
+  { debug: true }
+);
 
 // POST EMAIL ROUTE
 router.post('/email', (req, res, next) => {
@@ -67,4 +78,32 @@ router.post('/email', (req, res, next) => {
     }
   });
 });
+
+// POST SMS ROUTE
+router.post('/sms', (req, res) => {
+  res.send(req.body);
+  console.log(req.body);
+  const number = req.body.number;
+  const text = req.body.txtMessage;
+  nexmo.message.sendSms(
+    'Nexmo API APP',
+    number,
+    text,
+    { type: 'unicode' },
+    (err, responseData) => {
+      if (err) {
+        console.log('TEXT' + err);
+      } else {
+        console.dir(responseData);
+        // const data = {
+        //   id: responseData.messages[0]['message-id'],
+        //   number: responseData.messages[0]['to'],
+        // };
+        const data = 'Test';
+        console.log(data);
+      }
+    }
+  );
+});
+
 module.exports = router;

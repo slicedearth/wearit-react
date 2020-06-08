@@ -9,6 +9,7 @@ import Textarea from 'react-bulma-components/lib/components/form/components/text
 // import Select from 'react-bulma-components/lib/components/form/components/select';
 
 const Contact = () => {
+  // FORM INITIAL STATE
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,9 +17,13 @@ const Contact = () => {
     subject: '',
     message: '',
   });
+
+  // FORM DATA
   const { firstName, lastName, email, subject, message } = formData;
-  const onChange = (e) =>
+
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -31,8 +36,10 @@ const Contact = () => {
     });
     console.log(form);
   };
+
   return (
     <div>
+      {/* CONTACT FORM */}
       <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
         Contact Form
       </h1>

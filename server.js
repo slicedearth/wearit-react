@@ -1,6 +1,7 @@
 // IMPORTS
 require('dotenv').config();
 const express = require('express');
+
 // ROUTES
 const statusRoutes = require('./routes/status');
 const newsletterRoutes = require('./routes/newsletter');

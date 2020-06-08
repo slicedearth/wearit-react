@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
+import SMS from './components/SMS';
 import Newsletter from './components/Newsletter.js';
 import Status from './components/Status';
 import NotFound from './components/NotFound';
@@ -24,6 +25,7 @@ const App = () => {
             <Route exact path='/newsletter' component={Newsletter}></Route>
             <Route exact path='/about' component={About}></Route>
             <Route exact path='/contact' component={Contact}></Route>
+            <Route exact path='/sms' component={SMS}></Route>
             <Route exact path='/status' component={Status}></Route>
             <Route component={NotFound}></Route>
           </Switch>
