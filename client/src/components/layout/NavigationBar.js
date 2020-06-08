@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Navbar } from 'react-bulma-components';
-// import { Navbar } from 'react-bulma-components/lib';
 import styled from 'styled-components';
 
 const Styles = styled.div`
   .navbar {
     background-color: #222;
   }
+  .navbar-menu {
+    background-color: #222;
+  }
+  .navbar-item {
+    user-select: none;
+  }
   .navbar-brand,
   .navbar-item,
-  .navbar-link {
+  .navbar-link,
+  .navbar-menu {
     color: #bbb;
     &:hover {
       background-color: #222;
@@ -24,16 +30,41 @@ const NavigationBar = () => {
     <Styles>
       <Navbar expand='large' active={open}>
         <Navbar.Brand href='/'>
-          <Navbar.Item>Navbar Brand</Navbar.Item>
+          <Navbar.Item className='is-size-3'>Navbar Brand</Navbar.Item>
           <Navbar.Burger onClick={() => setOpen(!open)} />
         </Navbar.Brand>
         <Navbar.Menu>
           <Navbar.Container position='end'>
-            <Navbar.Item href='/'>Home</Navbar.Item>
-            <Navbar.Item href='/newsletter'>Newsletter</Navbar.Item>
-            <Navbar.Item href='/about'>About</Navbar.Item>
-            <Navbar.Item href='/contact'>Contact</Navbar.Item>
-            <Navbar.Item href='/status'>Status</Navbar.Item>
+            <Navbar.Item
+              className='has-text-centered-touch is-size-4-touch'
+              href='/'
+            >
+              Home
+            </Navbar.Item>
+            <Navbar.Item
+              className='has-text-centered-touch is-size-4-touch'
+              href='/newsletter'
+            >
+              Newsletter
+            </Navbar.Item>
+            <Navbar.Item
+              className='has-text-centered-touch is-size-4-touch'
+              href='/about'
+            >
+              About
+            </Navbar.Item>
+            <Navbar.Item
+              className='has-text-centered-touch is-size-4-touch'
+              href='/contact'
+            >
+              Contact
+            </Navbar.Item>
+            <Navbar.Item
+              className='has-text-centered-touch is-size-4-touch'
+              href='/status'
+            >
+              Status
+            </Navbar.Item>
           </Navbar.Container>
         </Navbar.Menu>
       </Navbar>

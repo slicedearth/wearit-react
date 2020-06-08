@@ -7,7 +7,7 @@ const Styles = styled.div`
     background: url(${boatImage}) no-repeat fixed bottom;
     background-size: cover;
     color: #efefef;
-    height: 200px;
+    height: 50vh;
     position: relative;
     z-index: -2;
   }
@@ -21,6 +21,9 @@ const Styles = styled.div`
     right: 0;
     z-index: -1;
   }
+  p {
+    padding: 0 2rem;
+  }
 `;
 
 const Jumbotron = () => {
@@ -29,8 +32,10 @@ const Jumbotron = () => {
       <Hero className='jumbo'>
         <div className='overlay'>
           <Section>
-            <h1>Welcome</h1>
-            <p>
+            <h1 className='is-size-1 has-text-centered has-text-weight-bold'>
+              Welcome
+            </h1>
+            <p className='is-size-4 has-text-centered'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptatibus alias nemo ratione hic delectus incidunt debitis
               repudiandae sed! Vero reiciendis consectetur corporis aperiam
