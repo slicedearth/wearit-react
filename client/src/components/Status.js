@@ -29,9 +29,9 @@ const Status = () => {
   return (
     <Styles>
       <div>
-        <Button onClick={() => getServerStatus()}>Button</Button>
+        <Button onClick={() => getServerStatus()}>Check Server Status</Button>
         <br />
-        {serverStatus.message}
+        <p className='is-family-code'>{serverStatus.message}</p>
       </div>
     </Styles>
   );

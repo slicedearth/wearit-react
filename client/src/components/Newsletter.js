@@ -67,7 +67,7 @@ const Newsletter = () => {
         <form onSubmit={handleSubmit}>
           {/* FIRST NAME */}
           <Field>
-            <Label size='large'>Name</Label>
+            <Label size='large'>First Name</Label>
             <Control>
               <Input
                 size='large'
