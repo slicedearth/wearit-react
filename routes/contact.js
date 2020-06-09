@@ -81,10 +81,16 @@ router.post('/email', (req, res, next) => {
 
 // POST SMS ROUTE
 router.post('/sms', (req, res) => {
-  res.send(req.body);
+  // res.send(req.body);
   console.log(req.body);
   const number = req.body.number;
   const text = req.body.txtMessage;
+  if (!number || !text) {
+    res
+      .status(400)
+      .send('Please ensure that all fields have been filled out correctly!');
+    return;
+  }
   nexmo.message.sendSms(
     'Nexmo API APP',
     number,
@@ -92,16 +98,43 @@ router.post('/sms', (req, res) => {
     { type: 'unicode' },
     (err, responseData) => {
       if (err) {
-        console.log('TEXT' + err);
+        console.log('TEXT ' + err);
+        res.status(400).send(err);
       } else {
-        console.dir(responseData);
-        // const data = {
-        //   id: responseData.messages[0]['message-id'],
-        //   number: responseData.messages[0]['to'],
-        // };
-        const data = 'Test';
-        console.log(data);
+        if (responseData.messages[0]['status'] === '0') {
+          console.log('Message sent successfully.');
+          res.status(200).send('SMS Sent!');
+        } else {
+          console.log(
+            `Message failed with error: ${responseData.messages[0]['error-text']}`
+          );
+          res
+            .status(500)
+            .send(
+              `SMS Failed! ERROR: ${responseData.messages[0]['error-text']}`
+            );
+        }
       }
+
+      // FAILED FIX
+      // try {
+      //   // console.log(res.status());
+      //   if (res.status === 200) {
+      //     res.status(200).send('SMS Sent!');
+      //   } else {
+      //     console.log('SMS Failed!');
+      //     console.log(responseData);
+
+      //     res
+      //       .status(500)
+      //       .send(
+      //         `SMS Failed! ERROR: ${err}`
+      //       );
+      //   }
+      // } catch (err) {
+      //   console.log('TEXT ' + err);
+      //   res.status(400).send(err);
+      // }
     }
   );
 });

@@ -12,61 +12,65 @@ import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
 import Textarea from 'react-bulma-components/lib/components/form/components/textarea';
 const SMS = () => {
+  // SMS INITIAL STATE
+  const [smsData, setSmsData] = useState({
+    number: '',
+    txtMessage: '',
+  });
+
   // SET NOTIFICATION STATE
   const [show, setShow] = useState(false);
   const [notificationData, setNotificationData] = useState({
     color: 'danger',
     message: '',
   });
-  const { color, message } = notificationData;
-  // SMS INITIAL STATE
-  const [smsData, setSmsData] = useState({
-    number: '',
-    txtMessage: '',
-  });
+
   // SMS DATA
   const { number, txtMessage } = smsData;
+  // NOTIFICATION DATA
+  const { color, message } = notificationData;
 
   const onChange = (e) => {
     setSmsData({ ...smsData, [e.target.name]: e.target.value });
   };
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(smsData);
+    // console.log(smsData);
     try {
       const res = await axios.post('/api/contact/sms', smsData);
       console.log(res);
-      //   setShow(true);
-      //   setNotificationData({ color: 'success', message: res.data });
-      alert(res.data);
+      setShow(true);
+      setNotificationData({ color: 'success', message: res.data });
+      // alert(res.data);
     } catch (error) {
       console.log(error);
-      alert(error.response.data);
-      //   setShow(true);
-      //   setNotificationData({ color: 'danger', message: 'error.response.data' });
+      // alert(error.response.data);
+      setShow(true);
+      setNotificationData({ color: 'danger', message: error.response.data });
     }
   };
   return (
     <div>
       {/* CONTACT FORM */}
       <Section>
-        <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
-          SMS Form
-        </h1>
-        {/* NOTIFICATION */}
-        {show === true ? (
-          <Notification className='mt-5' color={color}>
-            <Button remove onClick={() => setShow(false)} />
-            <h1 className='is-size-2 has-text-centered is-family-code'>
-              {color === 'success'
-                ? 'Success!'
-                : 'Oops...something went wrong. '}
-            </h1>
-            <p>{message}</p>
-          </Notification>
-        ) : null}
         <Container>
-          <form onSubmit={(e) => onSubmit(e)}>
+          <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
+            SMS Form
+          </h1>
+          {/* NOTIFICATION */}
+          {show === true ? (
+            <Notification className='mt-5' color={color}>
+              <Button remove onClick={() => setShow(false)} />
+              <h1 className='is-size-2 has-text-centered is-family-code'>
+                {color === 'success'
+                  ? 'Success!'
+                  : 'Oops...something went wrong. '}
+              </h1>
+              <p>{message}</p>
+            </Notification>
+          ) : null}
+
+          <form onSubmit={handleSubmit}>
             {/* PHONE NUMBER */}
             <Field>
               <Label size='large'>Phone Number</Label>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Section,
   Button,
@@ -9,7 +10,7 @@ import Field from 'react-bulma-components/lib/components/form/components/field';
 import Control from 'react-bulma-components/lib/components/form/components/control';
 import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
-import axios from 'axios';
+
 const Newsletter = () => {
   // SET FORM STATE
   const [formData, setFormData] = useState({
