@@ -11,7 +11,6 @@ import Control from 'react-bulma-components/lib/components/form/components/contr
 import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
 import Textarea from 'react-bulma-components/lib/components/form/components/textarea';
-// import Select from 'react-bulma-components/lib/components/form/components/select';
 
 const Contact = () => {
   // FORM INITIAL STATE
@@ -32,71 +31,26 @@ const Contact = () => {
   const { firstName, lastName, email, subject, message } = formData;
   // NOTIFICATION DATA
   const { color, msg } = notificationData;
-  // const validEmailRegex = RegExp(
-  //   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-  // );
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // switch (e.target.name) {
-    //   case 'firstName':
-    //     errors.firstName =
-    //       e.target.value.length < 128
-    //         ? 'First name must be between 1 and 128 characters!'
-    //         : '';
-    //     break;
-    //   case 'lastName':
-    //     errors.lastName =
-    //       e.target.value.length < 128
-    //         ? 'Last name must be between 1 and 128 characters!'
-    //         : '';
-    //     break;
-    //   case 'email':
-    //     errors.email = validEmailRegex.test(e.target.value)
-    //       ? ''
-    //       : 'Email is not valid!';
-    //     break;
-    //   case 'subject':
-    //     errors.subject =
-    //       e.target.value.length > 1
-    //         ? 'Subject is required!'
-    //         : '';
-    //     break;
-    // case 'message':
-    //     errors.message =
-    //       e.target.value.length > 10
-    //         ? 'Message must be at least 10 characters long!'
-    //         : '';
-    //     break;
-    //   default:
-    //     break;
-    // }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
     try {
-      const form = await axios.post('/api/contact/email', formData);
-      console.log(form);
+      const res = await axios.post('/api/contact/email', formData);
+      console.log(res);
       setShow(true);
-      setNotificationData({ color: 'success', msg: form.data });
-      // alert(form.data);
+      setNotificationData({ color: 'success', msg: res.data });
     } catch (error) {
       console.log(error);
-      // alert(error.response.data);
       setShow(true);
       setNotificationData({
         color: 'danger',
         msg: error.response.data,
       });
     }
-    // const form = await axios.post('/api/contact/email', {
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   subject,
-    //   message,
-    // });
-    // console.log(form);
   };
 
   return (

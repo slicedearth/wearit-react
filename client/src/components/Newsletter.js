@@ -37,12 +37,10 @@ const Newsletter = () => {
     try {
       const res = await axios.post('/api/newsletter', formData);
       console.log(res);
-      //   alert(res.data);
       setShow(true);
       setNotificationData({ color: 'success', msg: res.data });
     } catch (error) {
       console.log(error);
-      //   alert(error.response.data);
       setShow(true);
       setNotificationData({ color: 'danger', msg: error.response.data });
     }
