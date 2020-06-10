@@ -22,9 +22,9 @@ const Newsletter = () => {
   const [show, setShow] = useState(false);
   const [notificationData, setNotificationData] = useState({
     color: 'danger',
-    message: '',
+    msg: '',
   });
-  const { color, message } = notificationData;
+  const { color, msg } = notificationData;
   const { firstName, lastName, email } = formData;
   //   ASSIGN INPUT DATA TO FORMDATA
   const onChange = (e) =>
@@ -39,12 +39,12 @@ const Newsletter = () => {
       console.log(res);
       //   alert(res.data);
       setShow(true);
-      setNotificationData({ color: 'success', message: res.data });
+      setNotificationData({ color: 'success', msg: res.data });
     } catch (error) {
       console.log(error);
       //   alert(error.response.data);
       setShow(true);
-      setNotificationData({ color: 'danger', message: error.response.data });
+      setNotificationData({ color: 'danger', msg: error.response.data });
     }
   };
 
@@ -60,7 +60,7 @@ const Newsletter = () => {
                 ? 'Success!'
                 : 'Oops...something went wrong. '}
             </h1>
-            <p>{message}</p>
+            <p>{msg}</p>
           </Notification>
         ) : null}
 

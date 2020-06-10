@@ -1,7 +1,7 @@
 // IMPORTS
 const express = require('express');
 const nodemailer = require('nodemailer');
-const request = require('request');
+const Joi = require('@hapi/joi');
 const Nexmo = require('nexmo');
 
 // LOAD ROUTER
@@ -19,6 +19,48 @@ const nexmo = new Nexmo(
 // POST EMAIL ROUTE
 router.post('/email', (req, res, next) => {
   console.log(req.body);
+  // EMAIL VALIDATION
+  const validateEmail = (email) => {
+    const schema = Joi.object({
+      firstName: Joi.string().min(1).max(128).required().messages({
+        'string.base': `Invalid First Name!'`,
+        'string.empty': `Please enter a first name.`,
+        'string.min': `First name must be at least {#limit} character long.`,
+        'string.max': `First name cannot exceed {#limit} characters.`,
+        'any.required': `Please provide a first name.`,
+      }),
+      lastName: Joi.string().min(1).max(128).required().messages({
+        'string.base': `Invalid Last Name!'`,
+        'string.empty': `Please enter a last name.`,
+        'string.min': `Last name must be at least {#limit} character long.`,
+        'string.max': `Last name cannot exceed {#limit} characters.`,
+        'any.required': `Please provide a last name.`,
+      }),
+      email: Joi.string().email().required().messages({
+        'string.base': `Invalid Email Address!`,
+        'string.email': `Please enter a valid email address.`,
+        'any.required': 'Email address is required.',
+      }),
+      subject: Joi.string().required().messages({
+        'string.base': `Invalid Subject!'`,
+        'string.empty': `Please select a subject.`,
+        'any.required': `Please provide a subject.`,
+      }),
+      message: Joi.string().min(10).max(999).required().messages({
+        'string.base': `Invalid Message!`,
+        'string.empty': `Message cannot be empty.`,
+        'string.min': `Message must be at least {#limit} characters long.`,
+        'string.max': `Message cannot exceed {#limit} characters.`,
+        'any.required': `Message is a required field. Please enter a message.`,
+      }),
+    });
+    return schema.validate(email);
+  };
+  const { error } = validateEmail(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+    // return console.log(error.details[0].message);
+  }
   // EMAIL CONTENT
   const output = `
         <h1>Contact Form Enquiry</h1>
@@ -71,10 +113,14 @@ router.post('/email', (req, res, next) => {
   transporter.sendMail(mailOptions, (error, info) => {
     console.log('sending email...');
     if (error) {
-      return console.log('Errors: ', error);
+      console.log('Errors: ', error);
+      return res.status(500).send('Errors: ' + error);
     } else {
       console.log('Message sent: %s', info.messageId);
       console.log('Email sent successfully');
+      return res
+        .status(200)
+        .send(`Message sent with message ID: ${info.messageId}`);
     }
   });
 });
@@ -83,14 +129,37 @@ router.post('/email', (req, res, next) => {
 router.post('/sms', (req, res) => {
   // res.send(req.body);
   console.log(req.body);
+
+  const validateTxt = (sms) => {
+    const schema = Joi.object({
+      number: Joi.string()
+        .pattern(/^[0-9]+$/)
+        .min(5)
+        .max(20)
+        .required()
+        .messages({
+          'string.pattern.base': `Phone number must contain numerical characters only`,
+          'string.empty': `Phone number cannot be empty.`,
+          'string.min': `Phone number must be at least {#limit} characters long.`,
+          'string.max': `Phone number cannot exceed {#limit} characters.`,
+          'any.required': `Phone number is a required field. Please enter a message.`,
+        }),
+      txtMessage: Joi.string().min(5).max(256).required().messages({
+        'string.base': `"a" should be a type of 'text'`,
+        'string.empty': `Message cannot be empty.`,
+        'string.max': `Message cannot exceed {#limit} characters.`,
+        'any.required': `Message is a required field. Please enter a message.`,
+      }),
+    });
+    return schema.validate(sms);
+  };
+  const { error } = validateTxt(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+    // return console.log(valErr.details[0].message);
+  }
   const number = req.body.number;
   const text = req.body.txtMessage;
-  if (!number || !text) {
-    res
-      .status(400)
-      .send('Please ensure that all fields have been filled out correctly!');
-    return;
-  }
   nexmo.message.sendSms(
     'Nexmo API APP',
     number,
@@ -99,16 +168,16 @@ router.post('/sms', (req, res) => {
     (err, responseData) => {
       if (err) {
         console.log('TEXT ' + err);
-        res.status(400).send(err);
+        return res.status(400).send(err);
       } else {
         if (responseData.messages[0]['status'] === '0') {
           console.log('Message sent successfully.');
-          res.status(200).send('SMS Sent!');
+          return res.status(200).send('SMS Sent!');
         } else {
           console.log(
             `Message failed with error: ${responseData.messages[0]['error-text']}`
           );
-          res
+          return res
             .status(500)
             .send(
               `SMS Failed! ERROR: ${responseData.messages[0]['error-text']}`

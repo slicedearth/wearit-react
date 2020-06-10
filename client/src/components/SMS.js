@@ -22,13 +22,13 @@ const SMS = () => {
   const [show, setShow] = useState(false);
   const [notificationData, setNotificationData] = useState({
     color: 'danger',
-    message: '',
+    msg: '',
   });
 
   // SMS DATA
   const { number, txtMessage } = smsData;
   // NOTIFICATION DATA
-  const { color, message } = notificationData;
+  const { color, msg } = notificationData;
 
   const onChange = (e) => {
     setSmsData({ ...smsData, [e.target.name]: e.target.value });
@@ -40,13 +40,13 @@ const SMS = () => {
       const res = await axios.post('/api/contact/sms', smsData);
       console.log(res);
       setShow(true);
-      setNotificationData({ color: 'success', message: res.data });
+      setNotificationData({ color: 'success', msg: res.data });
       // alert(res.data);
     } catch (error) {
       console.log(error);
       // alert(error.response.data);
       setShow(true);
-      setNotificationData({ color: 'danger', message: error.response.data });
+      setNotificationData({ color: 'danger', msg: error.response.data });
     }
   };
   return (
@@ -66,7 +66,7 @@ const SMS = () => {
                   ? 'Success!'
                   : 'Oops...something went wrong. '}
               </h1>
-              <p>{message}</p>
+              <p>{msg}</p>
             </Notification>
           ) : null}
 
