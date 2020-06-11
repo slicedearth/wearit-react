@@ -29,8 +29,10 @@ const NavigationBar = () => {
   return (
     <Styles>
       <Navbar expand='large' active={open}>
-        <Navbar.Brand href='/'>
-          <Navbar.Item className='is-size-3'>Navbar Brand</Navbar.Item>
+        <Navbar.Brand>
+          <Navbar.Item className='is-size-3' href='/'>
+            Navbar Brand
+          </Navbar.Item>
           <Navbar.Burger onClick={() => setOpen(!open)} />
         </Navbar.Brand>
         <Navbar.Menu>
