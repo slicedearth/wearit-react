@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
   .navbar {
+    height: 5vh;
     background-color: #222;
   }
   .navbar-menu {

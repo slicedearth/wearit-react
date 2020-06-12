@@ -9,9 +9,7 @@ import SMS from './components/SMSForm';
 import Newsletter from './components/Newsletter.js';
 import Status from './components/Status';
 import NotFound from './components/NotFound';
-// import Layout from './components/layout/Layout';
 import NavigationBar from './components/layout/NavigationBar';
-// import Jumbotron from './components/layout/Jumbotron';
 
 const App = () => {
   return (
