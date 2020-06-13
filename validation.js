@@ -1,5 +1,6 @@
-// IMPORTS
+// THIRD PARTY IMPORTS
 const Joi = require('@hapi/joi');
+
 // EMAIL VALIDATION
 const validateEmail = (email) => {
   const schema = Joi.object({
@@ -68,7 +69,7 @@ const validateTxt = (sms) => {
   });
   return schema.validate(sms);
 };
-// NEWSLETTER SIGN UP VALIDATION
+// NEWSLETTER SIGNUP VALIDATION
 const validateSignup = (newsletter) => {
   const schema = Joi.object({
     firstName: Joi.string().min(1).empty(/^\s*$/).max(128).required().messages({

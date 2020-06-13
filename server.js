@@ -1,20 +1,18 @@
-// IMPORTS
+// THIRD PARTY IMPORTS
 require('dotenv').config();
 const express = require('express');
-
 // ROUTES
 const statusRoutes = require('./routes/status');
 const newsletterRoutes = require('./routes/newsletter');
 const contactRoutes = require('./routes/contact');
+
 // LOAD EXPRESS
 const app = express();
 
 // MIDDLEWARE
-
 // BODY PARSER
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 // ROUTES
 app.get('/', (req, res) => {
   res.send('Home Page');

@@ -1,9 +1,12 @@
-// IMPORTS
+// THIRD PARTY IMPORTS
 const express = require('express');
-const { validateSignup } = require('../validation');
 const request = require('request');
+// CUSTOM IMPORTS
+const { validateSignup } = require('../validation');
+
 // LOAD ROUTER
 const router = express.Router();
+
 // NEWSLETTER SIGN UP ROUTE
 router.post('/', (req, res) => {
   // console.log(req.body);
@@ -48,20 +51,23 @@ router.post('/', (req, res) => {
     body: postData,
   };
 
-  // REQUEST CALLS
+  // REQUEST HANDLING
   request(options, (err, response, body) => {
     console.log(response.statusCode);
     console.log(response.statusMessage);
     if (err) {
       console.log(err);
+      // SEND A 400 STATUS CODE WITH ERROR MESSAGE
       res.status(400).send(err);
     } else {
+      // IF STATUS CODE = 200...
       if (response.statusCode === 200) {
+        // SEND A 200 STATUS CODE BACK WITH MESSAGE
         res.status(200).send('Newsletter Signup Successful!');
       } else {
         console.log('Signup Failed!');
         console.log(err);
-
+        // SEND A 500 STATUS CODE WITH ERROR MESSAGE
         res.status(500).send(`Newsletter Signup Failed! ERROR: ${err}`);
       }
     }

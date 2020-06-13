@@ -1,29 +1,21 @@
-// IMPORTS
+// THIRD PARTY IMPORTS
 const express = require('express');
 const nodemailer = require('nodemailer');
-const { validateTxt, validateEmail } = require('../validation');
 const Nexmo = require('nexmo');
+// CUSTOM IMPORTS
+const { validateTxt, validateEmail } = require('../validation');
 
 // LOAD ROUTER
 const router = express.Router();
-
-// NEXMO CONNECTION
-const nexmo = new Nexmo(
-  {
-    apiKey: process.env.NEXMO_API_KEY,
-    apiSecret: process.env.NEXMO_API_SECRET,
-  },
-  { debug: true }
-);
 
 // POST EMAIL ROUTE
 router.post('/email', (req, res, next) => {
   console.log(req.body);
   // EMAIL VALIDATION
   const { error } = validateEmail(req.body);
-  // CHECK IF THERE ARE ANY VALIDATION ERRORS
+  // IF THERE IS A VALIDATION ERROR...
   if (error) {
-    // RETURN ERROR MESSAGE
+    // SEND A 400 STATUS CODE WITH ERROR MESSAGE
     return res.status(400).send(error.details[0].message);
     // return console.log(error.details[0].message);
   }
@@ -61,7 +53,7 @@ router.post('/email', (req, res, next) => {
     html: output,
   };
 
-  // SEND EMAIL
+  // SEND EMAIL USING NODEMAILER
   transporter.sendMail(mailOptions, (error, info) => {
     console.log('sending email...');
     if (error) {
@@ -77,6 +69,15 @@ router.post('/email', (req, res, next) => {
   });
 });
 
+// NEXMO CONNECTION
+const nexmo = new Nexmo(
+  {
+    apiKey: process.env.NEXMO_API_KEY,
+    apiSecret: process.env.NEXMO_API_SECRET,
+  },
+  { debug: true }
+);
+
 // POST SMS ROUTE
 router.post('/sms', (req, res) => {
   // res.send(req.body);
@@ -84,24 +85,29 @@ router.post('/sms', (req, res) => {
 
   // SMS VALIDATION
   const { error } = validateTxt(req.body);
-  // CHECK IF THERE ARE ANY VALIDATION ERRORS
+  // IF THERE IS A VALIDATION ERROR...
   if (error) {
-    // RETURN ERROR MESSAGE
+    // SEND A 400 STATUS CODE WITH ERROR MESSAGE
     return res.status(400).send(error.details[0].message);
     // return console.log(valErr.details[0].message);
   }
   const number = req.body.number;
   const text = req.body.txtMessage;
+
+  // SEND SMS USING NEXMO
   nexmo.message.sendSms(
     'Nexmo API APP',
     number,
     text,
     { type: 'unicode' },
     (err, responseData) => {
+      // IF THERE IS AN ERROR...
       if (err) {
         console.log('TEXT ' + err);
+        // SEND A 400 STATUS CODE WITH ERROR MESSAGE
         return res.status(400).send(err);
       } else {
+        // IF MESSAGE IS SENT SUCCESSFULLY
         if (responseData.messages[0]['status'] === '0') {
           console.log('Message sent successfully.');
           return res.status(200).send('SMS Sent!');
@@ -109,6 +115,7 @@ router.post('/sms', (req, res) => {
           console.log(
             `Message failed with error: ${responseData.messages[0]['error-text']}`
           );
+          // SEND A 500 STATUS CODE WITH ERROR MESSAGE
           return res
             .status(500)
             .send(
