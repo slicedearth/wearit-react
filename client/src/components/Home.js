@@ -1,26 +1,19 @@
-import React, { Fragment } from 'react';
+// THIRD PARTY IMPORTS
+import React from 'react';
 import { Section, Container } from 'react-bulma-components';
-import Jumbotron from './layout/Jumbotron';
+import { ThemeProvider } from 'styled-components';
+// CUSTOM IMPORTS
+import Jumbotron from './layout/Jumbotron/Jumbotron';
+import { homeHead, homeText } from './layout/Jumbotron/props';
+import { homeTheme } from './layout/Jumbotron/themes';
 
 const Home = () => {
-  const homeHead = (
-    <Fragment>
-      <h1 className='has-text-centered has-text-weight-bold'>Welcome!</h1>
-    </Fragment>
-  );
-  const homeText = (
-    <Fragment>
-      <p className='is-size-4 has-text-centered'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        alias nemo ratione hic delectus incidunt debitis repudiandae sed! Vero
-        reiciendis consectetur corporis aperiam error? Asperiores iure porro
-        debitis exercitationem voluptate?
-      </p>
-    </Fragment>
-  );
+  // HOME COMPONENT
   return (
     <div>
-      <Jumbotron title={homeHead} text={homeText} />
+      <ThemeProvider theme={homeTheme}>
+        <Jumbotron title={homeHead} text={homeText} />
+      </ThemeProvider>
       <Section>
         <Container>{/* ... */}</Container>
       </Section>

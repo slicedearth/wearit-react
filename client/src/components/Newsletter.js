@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+// THIRD PARTY IMPORTS
+import React, { useState } from 'react';
 import axios from 'axios';
 import {
   Section,
@@ -10,8 +11,20 @@ import Field from 'react-bulma-components/lib/components/form/components/field';
 import Control from 'react-bulma-components/lib/components/form/components/control';
 import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
-import Jumbotron from './layout/Jumbotron';
-
+import styled, { ThemeProvider } from 'styled-components';
+// ILLUSTRATION IMPORT
+import newsletterIMG from '../assets/illustrations/undraw_subscriber_vabu.svg';
+// CUSTOM IMPORTS
+import Jumbotron from './layout/Jumbotron/Jumbotron';
+import { newsletterHead, newsletterText } from './layout/Jumbotron/props';
+import { newsletterTheme } from './layout/Jumbotron/themes';
+// CUSTOM CSS FOR IMAGE
+const IMG = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 30vw;
+`;
 const Newsletter = () => {
   // SET FORM STATE
   const [formData, setFormData] = useState({
@@ -30,42 +43,40 @@ const Newsletter = () => {
   //   ASSIGN INPUT DATA TO FORMDATA
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  // SUBMIT NEWSLETTER REQUEST
+  // SUBMIT NEWSLETTER FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`${firstName} ${lastName}`);
-    console.log(email);
+    // console.log(`${firstName} ${lastName}`);
+    // console.log(email);
     try {
+      // SEND FORM DATA TO API ROUTE
       const res = await axios.post('/api/newsletter', formData);
       console.log(res);
+      // SHOW NOTIFICATION
       setShow(true);
+      // SET NOTIFICATION CONTENT
       setNotificationData({ color: 'success', msg: res.data });
     } catch (error) {
       console.log(error);
+      // SHOW NOTIFICATION
       setShow(true);
+      // SET NOTIFICATION CONTENT
       setNotificationData({ color: 'danger', msg: error.response.data });
     }
   };
-  // JUMBOTRON PROPS
-  const newsletterHead = (
-    <Fragment>
-      <h1 className='has-text-centered has-text-weight-bold'>
-        Newsletter Signup
-      </h1>
-    </Fragment>
-  );
-  const newsletterText = (
-    <Fragment>
-      <p className='is-size-4 has-text-centered'>
-        Recieve the latest news about our products as well as exclusive deals!;
-      </p>
-    </Fragment>
-  );
+
   return (
+    // NEWSLETTER COMPONENT
     <div>
-      <Jumbotron title={newsletterHead} text={newsletterText} />
+      <ThemeProvider theme={newsletterTheme}>
+        <Jumbotron title={newsletterHead} text={newsletterText} />
+      </ThemeProvider>
       <Section>
         <Container>
+          <h1 className=' is-size-1 has-text-centered has-text-weight-bold'>
+            Signup Form
+          </h1>
+          <IMG src={newsletterIMG} alt='Sign Up' />
           {/* NOTIFICATION */}
           {show === true ? (
             <Notification className='mt-5' color={color}>
@@ -79,7 +90,7 @@ const Newsletter = () => {
             </Notification>
           ) : null}
 
-          {/* NEWSLETTER SIGN UP FORM */}
+          {/* NEWSLETTER SIGNUP FORM */}
           <form onSubmit={handleSubmit}>
             {/* FIRST NAME FIELD */}
             <Field>

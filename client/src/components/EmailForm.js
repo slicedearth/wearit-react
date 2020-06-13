@@ -1,3 +1,4 @@
+// THIRD PARTY IMPORTS
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Notification } from 'react-bulma-components';
@@ -7,7 +8,7 @@ import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
 import Textarea from 'react-bulma-components/lib/components/form/components/textarea';
 const EmailForm = () => {
-  // FORM INITIAL STATE
+  // SET FORM STATE
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -25,21 +26,27 @@ const EmailForm = () => {
   const { firstName, lastName, email, subject, message } = formData;
   // NOTIFICATION DATA
   const { color, msg } = notificationData;
-
+  //   ASSIGN INPUT DATA TO FORMDATA
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  // SUBMIT EMAIL FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
     try {
+      // SEND FORM DATA TO API ROUTE
       const res = await axios.post('/api/contact/email', formData);
       console.log(res);
+      // SHOW NOTIFICATION
       setShow(true);
+      // SET NOTIFICATION CONTENT
       setNotificationData({ color: 'success', msg: res.data });
     } catch (error) {
       console.log(error);
+      // SHOW NOTIFICATION
       setShow(true);
+      // SET NOTIFICATION CONTENT
       setNotificationData({
         color: 'danger',
         msg: error.response.data,
@@ -48,10 +55,8 @@ const EmailForm = () => {
   };
 
   return (
+    // EMAIL FORM COMPONENT
     <div>
-      <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
-        Contact Form
-      </h1>
       {/* NOTIFICATION */}
       {show === true ? (
         <Notification className='mt-5' color={color}>
@@ -62,8 +67,9 @@ const EmailForm = () => {
           <p>{msg}</p>
         </Notification>
       ) : null}
+      {/* FORM */}
       <form onSubmit={handleSubmit}>
-        {/* FIRST NAME */}
+        {/* FIRST NAME FIELD */}
         <Field>
           <Label size='large'>First Name</Label>
           <Control>
@@ -77,7 +83,7 @@ const EmailForm = () => {
             ></Input>
           </Control>
         </Field>
-        {/* LAST NAME */}
+        {/* LAST NAME FIELD */}
         <Field>
           <Label size='large'>Last Name</Label>
           <Control>
@@ -91,7 +97,7 @@ const EmailForm = () => {
             ></Input>
           </Control>
         </Field>
-        {/* EMAIL */}
+        {/* EMAIL FIELD */}
         <Field>
           <Label size='large'>Email</Label>
           <Control>
@@ -105,7 +111,7 @@ const EmailForm = () => {
             ></Input>
           </Control>
         </Field>
-        {/* SUBJECT */}
+        {/* SUBJECT FIELD */}
         <Field>
           <Label size='large'>Subject</Label>
           <div className='control'>
@@ -122,16 +128,7 @@ const EmailForm = () => {
             </div>
           </div>
         </Field>
-        {/* <Field>
-              <Label>Subject</Label>
-              <Control>
-                <Select>
-                  <option>General</option>
-                  <option>Other</option>
-                </Select>
-              </Control>
-            </Field> */}
-        {/* MESSAGE */}
+        {/* MESSAGE FIELD */}
         <Field>
           <Label size='large'>Message</Label>
           <Control>

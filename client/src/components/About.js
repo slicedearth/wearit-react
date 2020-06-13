@@ -1,25 +1,31 @@
-import React, { Fragment } from 'react';
+// THIRD PARTY IMPORTS
+import React from 'react';
 import { Section, Container } from 'react-bulma-components';
-import Jumbotron from './layout/Jumbotron';
-
+import styled, { ThemeProvider } from 'styled-components';
+// ILLUSTRATION IMPORT
+import aboutIMG from '../assets/illustrations/undraw_Waiting__for_you_ldha.svg';
+// CUSTOM IMPORTS
+import Jumbotron from './layout/Jumbotron/Jumbotron';
+import { aboutHead, aboutText } from './layout/Jumbotron/props';
+import { aboutTheme } from './layout/Jumbotron/themes';
+// CUSTOM CSS FOR IMAGE
+const IMG = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 30vw;
+`;
 const About = () => {
-  const aboutHead = (
-    <Fragment>
-      <h1 className='has-text-centered has-text-weight-bold'>About Us</h1>
-    </Fragment>
-  );
-  const aboutText = (
-    <Fragment>
-      <p className='is-size-4 has-text-centered'>
-        Some information about our company
-      </p>
-    </Fragment>
-  );
+  // ABOUT COMPONENT
   return (
     <div>
-      <Jumbotron title={aboutHead} text={aboutText} />
+      <ThemeProvider theme={aboutTheme}>
+        <Jumbotron title={aboutHead} text={aboutText} />
+      </ThemeProvider>
       <Section>
-        <Container>{/* ... */}</Container>
+        <Container>
+          <IMG src={aboutIMG} alt='About' />
+        </Container>
       </Section>
     </div>
   );

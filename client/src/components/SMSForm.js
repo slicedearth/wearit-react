@@ -1,3 +1,4 @@
+// THIRD PARTY IMPORTS
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Notification } from 'react-bulma-components';
@@ -24,7 +25,7 @@ const SMSForm = () => {
   const { number, txtMessage } = smsData;
   // NOTIFICATION DATA
   const { color, msg } = notificationData;
-
+  //   ASSIGN INPUT DATA TO SMSDATA
   const onChange = (e) => {
     setSmsData({ ...smsData, [e.target.name]: e.target.value });
   };
@@ -32,24 +33,26 @@ const SMSForm = () => {
     e.preventDefault();
     // console.log(smsData);
     try {
+      // SEND SMSDATA TO API ROUTE
       const res = await axios.post('/api/contact/sms', smsData);
       console.log(res);
+      // SHOW NOTIFICATION
       setShow(true);
+      // SET NOTIFICATION CONTENT
       setNotificationData({ color: 'success', msg: res.data });
       // alert(res.data);
     } catch (error) {
       console.log(error);
       // alert(error.response.data);
+      // SHOW NOTIFICATION
       setShow(true);
+      // SET NOTIFICATION CONTENT
       setNotificationData({ color: 'danger', msg: error.response.data });
     }
   };
   return (
     <div>
-      {/* CONTACT FORM */}
-      <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
-        SMS Reminder
-      </h1>
+      {/* SMS FORM */}
       {/* NOTIFICATION */}
       {show === true ? (
         <Notification className='mt-5' color={color}>
@@ -62,7 +65,7 @@ const SMSForm = () => {
       ) : null}
 
       <form onSubmit={handleSubmit}>
-        {/* PHONE NUMBER */}
+        {/* PHONE NUMBER FIELD */}
         <Field>
           <Label size='large'>Phone Number</Label>
           <Control>
@@ -76,7 +79,7 @@ const SMSForm = () => {
             ></Input>
           </Control>
         </Field>
-        {/* TEXT MESSAGE */}
+        {/* TEXT MESSAGE FIELD */}
         <Field>
           <Label size='large'>Message</Label>
           <Control>
