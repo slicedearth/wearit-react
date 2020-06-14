@@ -7,6 +7,17 @@ import Control from 'react-bulma-components/lib/components/form/components/contr
 import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
 import Textarea from 'react-bulma-components/lib/components/form/components/textarea';
+import styled from 'styled-components';
+// ILLUSTRATION IMPORT
+import smsIMG from '../../assets/illustrations/undraw_texting_k35o.svg';
+
+// CUSTOM CSS FOR IMAGE
+const IMG = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 30vw;
+`;
 const SMSForm = () => {
   // SMS INITIAL STATE
   const [smsData, setSmsData] = useState({
@@ -34,7 +45,7 @@ const SMSForm = () => {
     // console.log(smsData);
     try {
       // SEND SMSDATA TO API ROUTE
-      const res = await axios.post('/api/contact/sms', smsData);
+      const res = await axios.post('/api/sms', smsData);
       console.log(res);
       // SHOW NOTIFICATION
       setShow(true);
@@ -53,9 +64,13 @@ const SMSForm = () => {
   return (
     <div>
       {/* SMS FORM */}
+      <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
+        Tell a Friend About Us!
+      </h1>
+      <IMG src={smsIMG} alt='SMS' />
       {/* NOTIFICATION */}
       {show === true ? (
-        <Notification className='mt-5' color={color}>
+        <Notification color={color}>
           <Button remove onClick={() => setShow(false)} />
           <h1 className='is-size-2 has-text-centered is-family-code'>
             {color === 'success' ? 'Success!' : 'Oops...something went wrong. '}
@@ -73,7 +88,7 @@ const SMSForm = () => {
               size='large'
               type='text'
               name='number'
-              placeholder='Enter your phone number'
+              placeholder='Enter a phone number'
               value={number}
               onChange={(e) => onChange(e)}
             ></Input>
@@ -86,7 +101,7 @@ const SMSForm = () => {
             <Textarea
               size='large'
               name='txtMessage'
-              placeholder='Enter your text message'
+              placeholder='Enter a text message'
               value={txtMessage}
               onChange={(e) => onChange(e)}
             ></Textarea>

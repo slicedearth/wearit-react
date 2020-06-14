@@ -3,11 +3,11 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Section, Container } from 'react-bulma-components';
 // ILLUSTRATION IMPORT
-import nfIMG from '../assets/illustrations/undraw_page_not_found_su7k.svg';
+import nfIMG from '../../assets/illustrations/undraw_page_not_found_su7k.svg';
 // CUSTOM IMPORTS
-import Jumbotron from './layout/Jumbotron/Jumbotron';
-import { errorHead } from './layout/Jumbotron/props';
-import { errorTheme } from './layout/Jumbotron/themes';
+import Jumbotron from '../layout/Jumbotron/Jumbotron';
+import { errorHead } from '../layout/Jumbotron/props';
+import { errorTheme } from '../layout/Jumbotron/themes';
 // CUSTOM CSS FOR IMAGE
 const IMG = styled.img`
   margin-left: auto;

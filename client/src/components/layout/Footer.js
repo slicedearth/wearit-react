@@ -12,7 +12,7 @@ const A = styled.a`
 const Footer = () => {
   return (
     <BulmaFooter>
-      <Content class='has-text-centered has-text-weight-semibold'>
+      <Content className='has-text-centered has-text-weight-semibold'>
         <p>Website built with Bulma and React 2020</p>
         <p>
           Illustrations courtesy of{' '}

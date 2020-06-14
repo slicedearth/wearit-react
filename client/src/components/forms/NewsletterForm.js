@@ -6,15 +6,22 @@ import Field from 'react-bulma-components/lib/components/form/components/field';
 import Control from 'react-bulma-components/lib/components/form/components/control';
 import Input from 'react-bulma-components/lib/components/form/components/input';
 import Label from 'react-bulma-components/lib/components/form/components/label';
-import Textarea from 'react-bulma-components/lib/components/form/components/textarea';
-const EmailForm = () => {
+import styled from 'styled-components';
+// ILLUSTRATION IMPORT
+import newsletterIMG from '../../assets/illustrations/undraw_subscriber_vabu.svg';
+// CUSTOM CSS FOR IMAGE
+const IMG = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 30vw;
+`;
+const NewsletterForm = () => {
   // SET FORM STATE
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    subject: '',
-    message: '',
   });
   // SET NOTIFICATION STATE
   const [show, setShow] = useState(false);
@@ -22,21 +29,19 @@ const EmailForm = () => {
     color: 'danger',
     msg: '',
   });
-  // FORM DATA
-  const { firstName, lastName, email, subject, message } = formData;
-  // NOTIFICATION DATA
   const { color, msg } = notificationData;
+  const { firstName, lastName, email } = formData;
   //   ASSIGN INPUT DATA TO FORMDATA
-  const onChange = (e) => {
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  // SUBMIT EMAIL FORM
+  // SUBMIT NEWSLETTER FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(`${firstName} ${lastName}`);
+    // console.log(email);
     try {
       // SEND FORM DATA TO API ROUTE
-      const res = await axios.post('/api/contact/email', formData);
+      const res = await axios.post('/api/newsletter', formData);
       console.log(res);
       // SHOW NOTIFICATION
       setShow(true);
@@ -47,19 +52,20 @@ const EmailForm = () => {
       // SHOW NOTIFICATION
       setShow(true);
       // SET NOTIFICATION CONTENT
-      setNotificationData({
-        color: 'danger',
-        msg: error.response.data,
-      });
+      setNotificationData({ color: 'danger', msg: error.response.data });
     }
   };
 
   return (
-    // EMAIL FORM COMPONENT
+    // NEWSLETTER COMPONENT
     <div>
+      <h1 className=' is-size-2 has-text-centered has-text-weight-bold'>
+        Newsletter Signup Form
+      </h1>
+      <IMG src={newsletterIMG} alt='Sign Up' />
       {/* NOTIFICATION */}
       {show === true ? (
-        <Notification className='mt-5' color={color}>
+        <Notification color={color}>
           <Button remove onClick={() => setShow(false)} />
           <h1 className='is-size-2 has-text-centered is-family-code'>
             {color === 'success' ? 'Success!' : 'Oops...something went wrong. '}
@@ -67,7 +73,8 @@ const EmailForm = () => {
           <p>{msg}</p>
         </Notification>
       ) : null}
-      {/* FORM */}
+
+      {/* NEWSLETTER FORM */}
       <form onSubmit={handleSubmit}>
         {/* FIRST NAME FIELD */}
         <Field>
@@ -97,6 +104,7 @@ const EmailForm = () => {
             ></Input>
           </Control>
         </Field>
+
         {/* EMAIL FIELD */}
         <Field>
           <Label size='large'>Email</Label>
@@ -111,36 +119,6 @@ const EmailForm = () => {
             ></Input>
           </Control>
         </Field>
-        {/* SUBJECT FIELD */}
-        <Field>
-          <Label size='large'>Subject</Label>
-          <div className='control'>
-            <div className='select is-fullwidth is-large'>
-              <select
-                name='subject'
-                value={subject}
-                onChange={(e) => onChange(e)}
-              >
-                <option>SELECT A SUBJECT</option>
-                <option>General</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-        </Field>
-        {/* MESSAGE FIELD */}
-        <Field>
-          <Label size='large'>Message</Label>
-          <Control>
-            <Textarea
-              size='large'
-              name='message'
-              placeholder='Enter your message'
-              value={message}
-              onChange={(e) => onChange(e)}
-            ></Textarea>
-          </Control>
-        </Field>
         {/* SUBMIT BUTTON */}
         <Button size='large' fullwidth={true} color='primary'>
           Submit
@@ -149,5 +127,4 @@ const EmailForm = () => {
     </div>
   );
 };
-
-export default EmailForm;
+export default NewsletterForm;

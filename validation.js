@@ -53,18 +53,18 @@ const validateTxt = (sms) => {
         'string.empty': `Phone number cannot be empty.`,
         'string.min': `Phone number must be at least {#limit} characters long.`,
         'string.max': `Phone number cannot exceed {#limit} characters.`,
-        'any.required': `Phone number is a required field. Please enter a message.`,
+        'any.required': `Phone number is a required field. Please enter a valid phone number.`,
       }),
     txtMessage: Joi.string()
       .min(5)
       .empty(/^\s*$/)
-      .max(256)
+      .max(160)
       .required()
       .messages({
-        'string.base': `"a" should be a type of 'text'`,
-        'string.empty': `Message cannot be empty.`,
-        'string.max': `Message cannot exceed {#limit} characters.`,
-        'any.required': `Message is a required field. Please enter a message.`,
+        'string.base': `Invalid Text Message!`,
+        'string.empty': `Text Message cannot be empty.`,
+        'string.max': `Text Message cannot exceed {#limit} characters.`,
+        'any.required': `Text Message is a required field. Please enter a message.`,
       }),
   });
   return schema.validate(sms);

@@ -5,6 +5,7 @@ const express = require('express');
 const statusRoutes = require('./routes/status');
 const newsletterRoutes = require('./routes/newsletter');
 const contactRoutes = require('./routes/contact');
+const smsRoutes = require('./routes/sms');
 
 // LOAD EXPRESS
 const app = express();
@@ -20,9 +21,10 @@ app.get('/', (req, res) => {
 app.use('/api/status', statusRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/sms', smsRoutes);
 
 // PORT VARIABLE
 const port = process.env.PORT || 5000;
 
 // START SERVER ON ASSIGNED PORT
-app.listen(port, console.log(`Server started on port: ${port}...`));
+app.listen(port, console.log(`Server started on port: ${port}.`));

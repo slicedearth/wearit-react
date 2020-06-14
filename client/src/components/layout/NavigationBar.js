@@ -6,10 +6,10 @@ import styled from 'styled-components';
 // CUSTOM CSS FOR DIV
 const Styles = styled.div`
   .navbar {
-    background-color: #222;
+    background-color: #f5f5f5;
   }
   .navbar-menu {
-    background-color: #222;
+    background-color: #f5f5f5;
   }
   .navbar-item {
     user-select: none;
@@ -18,9 +18,9 @@ const Styles = styled.div`
   .navbar-item,
   .navbar-link,
   .navbar-menu {
-    color: #bbb;
+    /* color: #bbb; */
     &:hover {
-      background-color: #222;
+      background-color: #f5f5f5;
       color: #00d1b2;
     }
   }
@@ -34,8 +34,11 @@ const NavigationBar = () => {
       <Navbar expand='large' active={open}>
         {/* NAVBAR BRAND */}
         <Navbar.Brand>
-          <Navbar.Item className='is-size-3' href='/'>
-            Navbar Brand
+          <Navbar.Item
+            className='is-size-3 is-italic has-text-weight-semibold'
+            href='/'
+          >
+            WearIt
           </Navbar.Item>
           {/* MODIFY HAMBURGER MENU STATE ON CLICK */}
           <Navbar.Burger onClick={() => setOpen(!open)} />
