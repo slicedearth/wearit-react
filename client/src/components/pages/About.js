@@ -13,7 +13,7 @@ const IMG = styled.img`
   margin-left: auto;
   margin-right: auto;
   display: block;
-  max-width: 30vw;
+  max-height: 40vh;
 `;
 const About = () => {
   // ABOUT COMPONENT

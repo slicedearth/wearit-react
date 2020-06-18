@@ -15,7 +15,7 @@ const IMG = styled.img`
   margin-left: auto;
   margin-right: auto;
   display: block;
-  max-width: 30vw;
+  max-height: 40vh;
 `;
 const EmailForm = () => {
   // SET FORM STATE
@@ -135,8 +135,11 @@ const EmailForm = () => {
                 value={subject}
                 onChange={(e) => onChange(e)}
               >
-                <option>SELECT A SUBJECT</option>
+                <option value={null}>SELECT A SUBJECT</option>
                 <option>General</option>
+                <option>Technical Issues</option>
+                <option>Refunds/Returns</option>
+                <option>Complaints</option>
                 <option>Other</option>
               </select>
             </div>

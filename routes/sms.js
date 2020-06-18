@@ -1,3 +1,4 @@
+// THIRD PARTY IMPORTS
 const express = require('express');
 const Nexmo = require('nexmo');
 // CUSTOM IMPORTS
@@ -6,7 +7,7 @@ const { validateTxt } = require('../validation');
 // LOAD ROUTER
 const router = express.Router();
 
-// NEXMO CONNECTION
+// NEXMO CONNECTION CONFIG
 const nexmo = new Nexmo(
   {
     apiKey: process.env.NEXMO_API_KEY,
@@ -33,7 +34,7 @@ router.post('/', (req, res) => {
 
   // SEND SMS USING NEXMO
   nexmo.message.sendSms(
-    'Nexmo API APP',
+    'WearIt Contact',
     number,
     text,
     { type: 'unicode' },
