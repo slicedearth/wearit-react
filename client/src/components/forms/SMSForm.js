@@ -81,7 +81,12 @@ const SMSForm = () => {
       <form onSubmit={handleSubmit}>
         {/* NAME FIELD */}
         <Field>
-          <Label size='large'>Name</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-user-alt'></i>
+            </span>
+            Name
+          </Label>
           <Control>
             <Input
               size='large'
@@ -95,7 +100,12 @@ const SMSForm = () => {
         </Field>
         {/* PHONE NUMBER FIELD */}
         <Field>
-          <Label size='large'>Phone Number</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-phone'></i>
+            </span>
+            Phone Number
+          </Label>
           <Control>
             <Input
               size='large'
@@ -109,7 +119,12 @@ const SMSForm = () => {
         </Field>
         {/* TEXT MESSAGE FIELD */}
         <Field>
-          <Label size='large'>Text Message</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-sms'></i>
+            </span>
+            Text Message
+          </Label>
           <Control>
             <Textarea
               size='large'

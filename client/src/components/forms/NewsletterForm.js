@@ -78,7 +78,12 @@ const NewsletterForm = () => {
       <form onSubmit={handleSubmit}>
         {/* FIRST NAME FIELD */}
         <Field>
-          <Label size='large'>First Name</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-user'></i>
+            </span>
+            First Name
+          </Label>
           <Control>
             <Input
               size='large'
@@ -92,7 +97,12 @@ const NewsletterForm = () => {
         </Field>
         {/* LAST NAME FIELD */}
         <Field>
-          <Label size='large'>Last Name</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='far fa-user'></i>
+            </span>
+            Last Name
+          </Label>
           <Control>
             <Input
               size='large'
@@ -107,7 +117,12 @@ const NewsletterForm = () => {
 
         {/* EMAIL FIELD */}
         <Field>
-          <Label size='large'>Email</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-envelope'></i>
+            </span>
+            Email
+          </Label>
           <Control>
             <Input
               size='large'
@@ -121,7 +136,10 @@ const NewsletterForm = () => {
         </Field>
         {/* SUBMIT BUTTON */}
         <Button size='large' fullwidth={true} color='primary'>
-          Submit
+          <span class='icon is-large is-left'>
+            <i class='fab fa-mailchimp'></i>
+          </span>
+          &nbsp;Submit
         </Button>
       </form>
     </div>

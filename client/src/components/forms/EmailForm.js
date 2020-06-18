@@ -85,7 +85,12 @@ const EmailForm = () => {
       <form onSubmit={handleSubmit}>
         {/* FIRST NAME FIELD */}
         <Field>
-          <Label size='large'>First Name</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-user'></i>
+            </span>
+            First Name
+          </Label>
           <Control>
             <Input
               size='large'
@@ -99,7 +104,12 @@ const EmailForm = () => {
         </Field>
         {/* LAST NAME FIELD */}
         <Field>
-          <Label size='large'>Last Name</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='far fa-user'></i>
+            </span>
+            Last Name
+          </Label>
           <Control>
             <Input
               size='large'
@@ -113,7 +123,12 @@ const EmailForm = () => {
         </Field>
         {/* EMAIL FIELD */}
         <Field>
-          <Label size='large'>Email</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-envelope'></i>
+            </span>
+            Email
+          </Label>
           <Control>
             <Input
               size='large'
@@ -127,7 +142,12 @@ const EmailForm = () => {
         </Field>
         {/* SUBJECT FIELD */}
         <Field>
-          <Label size='large'>Subject</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-layer-group'></i>
+            </span>
+            Subject
+          </Label>
           <div className='control'>
             <div className='select is-fullwidth is-large'>
               <select
@@ -147,7 +167,12 @@ const EmailForm = () => {
         </Field>
         {/* MESSAGE FIELD */}
         <Field>
-          <Label size='large'>Message</Label>
+          <Label size='large'>
+            <span class='icon is-large is-left'>
+              <i class='fas fa-comment-alt'></i>
+            </span>
+            Message
+          </Label>
           <Control>
             <Textarea
               size='large'
