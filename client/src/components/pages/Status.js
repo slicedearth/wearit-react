@@ -1,8 +1,13 @@
 // THIRD PARTY IMPORTS
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import axios from 'axios';
 import { Button } from 'react-bulma-components';
+// CUSTOM IMPORTS
+import Jumbotron from '../layout/Jumbotron/Jumbotron';
+import { statusHead, statusText } from '../layout/Jumbotron/props';
+import { statusTheme } from '../layout/Jumbotron/themes';
+
 // CUSTOM CSS FOR DIV
 const Styles = styled.div`
   background-color: palegreen;
@@ -35,14 +40,17 @@ const Status = () => {
     }
   };
   return (
-    <Styles>
-      <div>
+    <div>
+      <ThemeProvider theme={statusTheme}>
+        <Jumbotron title={statusHead} text={statusText} />
+      </ThemeProvider>
+      <Styles>
         {/* CHECK SERVER STATUS ON CLICK */}
-        <Button onClick={() => getServerStatus()}>Check Server Status</Button>
+        <Button onClick={() => getServerStatus()}>Check Server</Button>
         <br />
         <p className='is-family-code'>{serverStatus.message}</p>
-      </div>
-    </Styles>
+      </Styles>
+    </div>
   );
 };
 export default Status;

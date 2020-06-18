@@ -1,9 +1,10 @@
 // PATTERN IMPORTS
-import homeBackground from '../../../assets/patterns/pixel-dots.svg';
+import homeBackground from '../../../assets/patterns/glamorous.svg';
 import errorBackground from '../../../assets/patterns/brick-wall.svg';
+import statusBackground from '../../../assets/patterns/signal.svg';
 import contactBackground from '../../../assets/patterns/death-star.svg';
 import newsletterBackground from '../../../assets/patterns/eyes.svg';
-import aboutBackground from '../../../assets/patterns/signal.svg';
+import aboutBackground from '../../../assets/patterns/overlapping-circles.svg';
 
 // CUSTOM THEMES FOR JUMBOTRON COMPONENT
 // HOME
@@ -26,7 +27,6 @@ const aboutTheme = {
 
 // CONTACT
 const contactTheme = {
-  headSize: '4rem',
   backgroundImg: contactBackground,
   jumboHeight: '30vh',
 };
@@ -40,4 +40,18 @@ const errorTheme = {
   jumboHeight: '30vh',
 };
 
-export { homeTheme, newsletterTheme, aboutTheme, errorTheme, contactTheme };
+// STATUS
+const statusTheme = {
+  headFont: 'monospace',
+  backgroundImg: statusBackground,
+  jumboHeight: '30vh',
+};
+
+export {
+  homeTheme,
+  newsletterTheme,
+  aboutTheme,
+  errorTheme,
+  contactTheme,
+  statusTheme,
+};

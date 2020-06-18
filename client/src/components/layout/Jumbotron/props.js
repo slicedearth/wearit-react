@@ -5,25 +5,25 @@ import React, { Fragment } from 'react';
 // HOME
 const homeHead = (
   <Fragment>
-    <h1 className='has-text-centered has-text-weight-bold'>
+    <h1 className='is-size-2-touch has-text-centered has-text-weight-bold'>
       Welcome To WearIt!
     </h1>
   </Fragment>
 );
 const homeText = (
   <Fragment>
-    <p className='is-size-2 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-2 is-size-3-touch has-text-centered is-italic has-text-weight-semibold'>
       Soon to be Australia's premiere fashion retailer!
     </p>
     <br />
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-3 is-size-4-touch has-text-centered is-italic has-text-weight-semibold '>
       We're happy to announce that our online store will be launching this
       Spring.
     </p>
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-3 is-size-4-touch has-text-centered is-italic has-text-weight-semibold'>
       Sign up to our newsletter to get the latest updates!
     </p>
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-3 is-size-4-touch has-text-centered is-italic has-text-weight-semibold'>
       Until then, feel free to browse our website and use the contact form if
       you have any enquiries.
     </p>
@@ -40,10 +40,6 @@ const newsletterText = (
     <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
       Receive the latest updates, sneak peeks at upcoming products, as well as
       exclusive deals once the online store launches!
-    </p>
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
-      While you're here, why not tell a friend about us by using the SMS form
-      below!
     </p>
   </Fragment>
 );
@@ -77,22 +73,35 @@ const contactHead = (
 );
 const contactText = (
   <Fragment>
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-3 has-text-centered has-text-weight-semibold'>
       Phone Number: (02) 5550 1095
     </p>
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-3 has-text-centered has-text-weight-semibold'>
       Address: 1638 Willow Avenue, Sydney, NSW 2000
     </p>
-    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+    <p className='is-size-3 has-text-centered has-text-weight-semibold'>
       In Store Trading Hours: 9:00am - 5:00pm Monday - Saturday
     </p>
     <br />
     <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
-      If you have any enquiries feel free to fill out the form below.
+      If you have any enquiries feel free to fill out the form below or use the
+      other form to send us an SMS!
     </p>
   </Fragment>
 );
-
+// STATUS
+const statusHead = (
+  <Fragment>
+    <h1 className='has-text-centered has-text-weight-bold'>Server Status</h1>
+  </Fragment>
+);
+const statusText = (
+  <Fragment>
+    <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
+      A handy tool to check to see if our server is running!
+    </p>
+  </Fragment>
+);
 export {
   homeHead,
   homeText,
@@ -104,4 +113,6 @@ export {
   errorText,
   contactHead,
   contactText,
+  statusHead,
+  statusText,
 };
