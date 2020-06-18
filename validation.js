@@ -66,5 +66,4 @@ const validateSignup = (newsletter) => {
   return schema.validate(newsletter);
 };
 module.exports.validateEmail = validateEmail;
-module.exports.validateTxt = validateTxt;
 module.exports.validateSignup = validateSignup;
