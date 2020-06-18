@@ -84,8 +84,7 @@ const contactText = (
     </p>
     <br />
     <p className='is-size-3 has-text-centered is-italic has-text-weight-semibold'>
-      If you have any enquiries feel free to fill out the form below or use the
-      other form to send us an SMS!
+      If you have any enquiries feel free to fill out the form below.
     </p>
   </Fragment>
 );

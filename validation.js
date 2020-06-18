@@ -39,36 +39,6 @@ const validateEmail = (email) => {
   });
   return schema.validate(email);
 };
-// SMS VALIDATION
-const validateTxt = (sms) => {
-  const schema = Joi.object({
-    number: Joi.string()
-      .pattern(/^[0-9]+$/)
-      .min(5)
-      .empty(/^\s*$/)
-      .max(20)
-      .required()
-      .messages({
-        'string.pattern.base': `Phone number must contain numerical characters only`,
-        'string.empty': `Phone number cannot be empty.`,
-        'string.min': `Phone number must be at least {#limit} characters long.`,
-        'string.max': `Phone number cannot exceed {#limit} characters.`,
-        'any.required': `Phone number is a required field. Please enter a valid phone number.`,
-      }),
-    txtMessage: Joi.string()
-      .min(5)
-      .empty(/^\s*$/)
-      .max(160)
-      .required()
-      .messages({
-        'string.base': `Invalid Text Message!`,
-        'string.empty': `Text Message cannot be empty.`,
-        'string.max': `Text Message cannot exceed {#limit} characters.`,
-        'any.required': `Text Message is a required field. Please enter a message.`,
-      }),
-  });
-  return schema.validate(sms);
-};
 // NEWSLETTER SIGNUP VALIDATION
 const validateSignup = (newsletter) => {
   const schema = Joi.object({

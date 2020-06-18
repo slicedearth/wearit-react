@@ -5,7 +5,6 @@ const express = require('express');
 const statusRoutes = require('./routes/status');
 const newsletterRoutes = require('./routes/newsletter');
 const emailRoutes = require('./routes/email');
-const smsRoutes = require('./routes/sms');
 
 // LOAD EXPRESS
 const app = express();
@@ -21,7 +20,6 @@ app.get('/', (req, res) => {
 app.use('/api/status', statusRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/contact/email', emailRoutes);
-app.use('/api/contact/sms', smsRoutes);
 
 // PORT VARIABLE
 const port = process.env.PORT || 5000;
