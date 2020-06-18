@@ -4,7 +4,7 @@ const express = require('express');
 // ROUTES
 const statusRoutes = require('./routes/status');
 const newsletterRoutes = require('./routes/newsletter');
-const contactRoutes = require('./routes/contact');
+const emailRoutes = require('./routes/email');
 const smsRoutes = require('./routes/sms');
 
 // LOAD EXPRESS
@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
 });
 app.use('/api/status', statusRoutes);
 app.use('/api/newsletter', newsletterRoutes);
-app.use('/api/contact', contactRoutes);
-app.use('/api/sms', smsRoutes);
+app.use('/api/contact/email', emailRoutes);
+app.use('/api/contact/sms', smsRoutes);
 
 // PORT VARIABLE
 const port = process.env.PORT || 5000;

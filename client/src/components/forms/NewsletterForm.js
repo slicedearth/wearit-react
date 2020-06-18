@@ -14,7 +14,7 @@ const IMG = styled.img`
   margin-left: auto;
   margin-right: auto;
   display: block;
-  max-width: 30vw;
+  max-height: 40vh;
 `;
 const NewsletterForm = () => {
   // SET FORM STATE
@@ -41,7 +41,7 @@ const NewsletterForm = () => {
     // console.log(email);
     try {
       // SEND FORM DATA TO API ROUTE
-      const res = await axios.post('/api/newsletter', formData);
+      const res = await axios.post('/api/newsletter/signup', formData);
       console.log(res);
       // SHOW NOTIFICATION
       setShow(true);

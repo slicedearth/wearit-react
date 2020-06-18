@@ -8,7 +8,7 @@ const { validateSignup } = require('../validation');
 const router = express.Router();
 
 // NEWSLETTER SIGN UP ROUTE
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
   // console.log(req.body);
   const { firstName, lastName, email } = req.body;
   console.log(firstName + ' ' + lastName);

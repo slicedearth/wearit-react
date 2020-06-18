@@ -1,15 +1,14 @@
 // THIRD PARTY IMPORTS
 const express = require('express');
 const nodemailer = require('nodemailer');
-const Nexmo = require('nexmo');
 // CUSTOM IMPORTS
-const { validateTxt, validateEmail } = require('../validation');
+const { validateEmail } = require('../validation');
 
 // LOAD ROUTER
 const router = express.Router();
 
 // POST EMAIL ROUTE
-router.post('/email', (req, res, next) => {
+router.post('/', (req, res, next) => {
   console.log(req.body);
   // EMAIL VALIDATION
   const { error } = validateEmail(req.body);
@@ -21,7 +20,7 @@ router.post('/email', (req, res, next) => {
   }
   // EMAIL CONTENT
   const output = `
-        <h1>Contact Form Enquiry</h1>
+        <h1>WearIt Customer Enquiry</h1>
         <br/>
         <h3>Subject</h3>
         <p>${req.body.subject}</p>
@@ -34,11 +33,11 @@ router.post('/email', (req, res, next) => {
         <p>${req.body.message}</p>
         `;
 
-  // ETHEREAL EMAIL ACCOUNT
+  // ETHEREAL EMAIL ACCOUNT -- CREATE ACCOUNT VIA https://ethereal.email/
   const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
-    secure: false,
+    // secure: false,
     auth: {
       user: process.env.NODEMAIL_ADDRESS,
       pass: process.env.NODEMAIL_PASSWORD,
@@ -47,8 +46,8 @@ router.post('/email', (req, res, next) => {
 
   // SET EMAIL OPTIONS
   let mailOptions = {
-    from: process.env.EMAIL,
-    to: 'dummyemail@notarealemailaddress.com',
+    from: process.env.NODEMAIL_ADDRESS,
+    to: 'contact@wearit.com.au',
     subject: `${req.body.email} - ${req.body.subject}`,
     html: output,
   };

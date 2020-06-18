@@ -7,7 +7,6 @@ import Jumbotron from '../layout/Jumbotron/Jumbotron';
 import { newsletterHead, newsletterText } from '../layout/Jumbotron/props';
 import { newsletterTheme } from '../layout/Jumbotron/themes';
 import NewsletterForm from '../forms/NewsletterForm';
-import SMSForm from '../forms/SMSForm';
 
 const Newsletter = () => {
   // NEWSLETTER COMPONENT
@@ -19,12 +18,6 @@ const Newsletter = () => {
       <Section>
         <Container>
           <NewsletterForm />
-        </Container>
-      </Section>
-      {/* SMS FORM */}
-      <Section>
-        <Container>
-          <SMSForm />
         </Container>
       </Section>
     </div>

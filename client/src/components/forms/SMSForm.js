@@ -16,11 +16,12 @@ const IMG = styled.img`
   margin-left: auto;
   margin-right: auto;
   display: block;
-  max-width: 30vw;
+  max-height: 40vh;
 `;
 const SMSForm = () => {
   // SMS INITIAL STATE
   const [smsData, setSmsData] = useState({
+    name: '',
     number: '',
     txtMessage: '',
   });
@@ -33,7 +34,7 @@ const SMSForm = () => {
   });
 
   // SMS DATA
-  const { number, txtMessage } = smsData;
+  const { name, number, txtMessage } = smsData;
   // NOTIFICATION DATA
   const { color, msg } = notificationData;
   //   ASSIGN INPUT DATA TO SMSDATA
@@ -45,16 +46,14 @@ const SMSForm = () => {
     // console.log(smsData);
     try {
       // SEND SMSDATA TO API ROUTE
-      const res = await axios.post('/api/sms', smsData);
+      const res = await axios.post('/api/contact/sms', smsData);
       console.log(res);
       // SHOW NOTIFICATION
       setShow(true);
       // SET NOTIFICATION CONTENT
       setNotificationData({ color: 'success', msg: res.data });
-      // alert(res.data);
     } catch (error) {
       console.log(error);
-      // alert(error.response.data);
       // SHOW NOTIFICATION
       setShow(true);
       // SET NOTIFICATION CONTENT
@@ -65,7 +64,7 @@ const SMSForm = () => {
     <div>
       {/* SMS FORM */}
       <h1 className='is-size-2 has-text-centered has-text-weight-bold'>
-        Tell a Friend About Us!
+        Send Us an SMS!
       </h1>
       <IMG src={smsIMG} alt='SMS' />
       {/* NOTIFICATION */}
@@ -80,6 +79,20 @@ const SMSForm = () => {
       ) : null}
 
       <form onSubmit={handleSubmit}>
+        {/* NAME FIELD */}
+        <Field>
+          <Label size='large'>Name</Label>
+          <Control>
+            <Input
+              size='large'
+              type='text'
+              name='number'
+              placeholder='Enter your name'
+              value={name}
+              onChange={(e) => onChange(e)}
+            ></Input>
+          </Control>
+        </Field>
         {/* PHONE NUMBER FIELD */}
         <Field>
           <Label size='large'>Phone Number</Label>
@@ -88,7 +101,7 @@ const SMSForm = () => {
               size='large'
               type='text'
               name='number'
-              placeholder='Enter a phone number'
+              placeholder='Enter your phone number'
               value={number}
               onChange={(e) => onChange(e)}
             ></Input>
@@ -96,12 +109,12 @@ const SMSForm = () => {
         </Field>
         {/* TEXT MESSAGE FIELD */}
         <Field>
-          <Label size='large'>Message</Label>
+          <Label size='large'>Text Message</Label>
           <Control>
             <Textarea
               size='large'
               name='txtMessage'
-              placeholder='Enter a text message'
+              placeholder='Enter your text message'
               value={txtMessage}
               onChange={(e) => onChange(e)}
             ></Textarea>
@@ -109,7 +122,7 @@ const SMSForm = () => {
         </Field>
         {/* SUBMIT BUTTON */}
         <Button size='large' fullwidth={true} color='primary'>
-          Send Reminder
+          Send
         </Button>
       </form>
     </div>

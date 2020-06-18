@@ -7,6 +7,7 @@ import Jumbotron from '../layout/Jumbotron/Jumbotron';
 import { contactHead, contactText } from '../layout/Jumbotron/props';
 import { contactTheme } from '../layout/Jumbotron/themes';
 import EmailForm from '../forms/EmailForm';
+import SMSForm from '../forms/SMSForm';
 
 const Contact = () => {
   // CONTACT COMPONENT
@@ -19,6 +20,12 @@ const Contact = () => {
       <Section>
         <Container>
           <EmailForm />
+        </Container>
+      </Section>
+      {/* CONTACT FORM */}
+      <Section>
+        <Container>
+          <SMSForm />
         </Container>
       </Section>
     </div>
