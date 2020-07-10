@@ -82,8 +82,8 @@ const SMSForm = () => {
         {/* NAME FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-user-alt'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-user-alt'></i>
             </span>
             Name
           </Label>
@@ -101,8 +101,8 @@ const SMSForm = () => {
         {/* PHONE NUMBER FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-phone'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-phone'></i>
             </span>
             Phone Number
           </Label>
@@ -120,8 +120,8 @@ const SMSForm = () => {
         {/* TEXT MESSAGE FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-sms'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-sms'></i>
             </span>
             Text Message
           </Label>

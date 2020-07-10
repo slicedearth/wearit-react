@@ -79,8 +79,8 @@ const NewsletterForm = () => {
         {/* FIRST NAME FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-user'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-user'></i>
             </span>
             First Name
           </Label>
@@ -98,8 +98,8 @@ const NewsletterForm = () => {
         {/* LAST NAME FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='far fa-user'></i>
+            <span className='icon is-large is-left'>
+              <i className='far fa-user'></i>
             </span>
             Last Name
           </Label>
@@ -118,8 +118,8 @@ const NewsletterForm = () => {
         {/* EMAIL FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-envelope'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-envelope'></i>
             </span>
             Email
           </Label>
@@ -136,8 +136,8 @@ const NewsletterForm = () => {
         </Field>
         {/* SUBMIT BUTTON */}
         <Button size='large' fullwidth={true} color='primary'>
-          <span class='icon is-large is-left'>
-            <i class='fab fa-mailchimp'></i>
+          <span className='icon is-large is-left'>
+            <i className='fab fa-mailchimp'></i>
           </span>
           &nbsp;Submit
         </Button>

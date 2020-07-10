@@ -86,8 +86,8 @@ const EmailForm = () => {
         {/* FIRST NAME FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-user'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-user'></i>
             </span>
             First Name
           </Label>
@@ -105,8 +105,8 @@ const EmailForm = () => {
         {/* LAST NAME FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='far fa-user'></i>
+            <span className='icon is-large is-left'>
+              <i className='far fa-user'></i>
             </span>
             Last Name
           </Label>
@@ -124,8 +124,8 @@ const EmailForm = () => {
         {/* EMAIL FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-envelope'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-envelope'></i>
             </span>
             Email
           </Label>
@@ -143,8 +143,8 @@ const EmailForm = () => {
         {/* SUBJECT FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-layer-group'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-layer-group'></i>
             </span>
             Subject
           </Label>
@@ -168,8 +168,8 @@ const EmailForm = () => {
         {/* MESSAGE FIELD */}
         <Field>
           <Label size='large'>
-            <span class='icon is-large is-left'>
-              <i class='fas fa-comment-alt'></i>
+            <span className='icon is-large is-left'>
+              <i className='fas fa-comment-alt'></i>
             </span>
             Message
           </Label>
